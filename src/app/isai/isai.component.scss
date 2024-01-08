@@ -1,0 +1,23 @@
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  height: 100vh;
+  padding: 30px;
+  background-color: rgb(66, 85, 75);
+  color: white;
+  .calc-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+    .result {
+      display: flex;
+      gap: 10px;
+    }
+  }
+}

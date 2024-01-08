@@ -1,0 +1,19 @@
+<main>
+  <h1>Savings</h1>
+  <div class="calc-container">
+    <div class="field">
+      <label for="">Precio Oferta:</label>
+      <input type="number" (change)="handleOffer($event)" />
+    </div>
+    <div class="field">
+      <label for="">Precio Regular:</label>
+      <input type="number" (change)="handleRegular($event)" />
+    </div>
+    <div class="result">
+      <p>{{ result }}</p>
+      <button (click)="copyOne()">Copy</button>
+    </div>
+  </div>
+  <div></div>
+  <div></div>
+</main>
