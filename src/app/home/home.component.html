@@ -1,9 +1,64 @@
-<p>home works!</p>
-<ul>
-  <li>
-    <a [routerLink]="['/isai']" routerLinkActive="router-link-active">Isai</a>
-  </li>
-  <li>
-    <a [routerLink]="['/peter']" routerLinkActive="router-link-active">Peter</a>
-  </li>
-</ul>
+<main>
+  <h1>Savings</h1>
+  <div class="calc-container one">
+    <div class="field">
+      <label for="">Precio Oferta:</label>
+      <input type="number" (change)="handleOffer($event, 0)" />
+    </div>
+    <div class="field">
+      <label for="">Precio Regular:</label>
+      <input type="number" (change)="handleRegular($event, 0)" />
+    </div>
+    <div class="result">
+      <p>{{ results[0].result }}</p>
+      <button (click)="copy(0)">Copy</button>
+    </div>
+  </div>
+
+  <!-- Two -->
+
+  <div class="calc-container two">
+    <div class="field">
+      <label for="">Precio Oferta:</label>
+      <div class="two-fields">
+        <input type="number" (change)="handleOffer($event, 1)" />
+        /$
+        <input type="number" (change)="handleOfferQuantity($event, 1)" />
+      </div>
+    </div>
+    <div class="field">
+      <label for="">Precio Regular:</label>
+      <input type="number" (change)="handleRegular($event, 1)" />
+    </div>
+    <div class="result">
+      <p>{{ results[1].result }}</p>
+      <button (click)="copy(1)">Copy</button>
+    </div>
+  </div>
+
+  <!-- Three -->
+
+  <div class="calc-container three">
+    <div class="field">
+      <label for="">Precio Oferta:</label>
+      <div class="two-fields">
+        <input type="number" (change)="handleOffer($event, 2)" />
+        /$
+        <input type="number" (change)="handleOfferQuantity($event, 2)" />
+      </div>
+    </div>
+    <div class="field">
+      <label for="">Precio Regular:</label>
+      <div class="two-fields">
+        <input type="number" (change)="handleRegular($event, 2)" />
+        /$
+        <input type="number" (change)="handleRegularQuantity($event, 2)" />
+      </div>
+    </div>
+    <div class="result">
+      <p>{{ results[2].result }}</p>
+      <button (click)="copy(2)">Copy</button>
+    </div>
+  </div>
+  <div></div>
+</main>
