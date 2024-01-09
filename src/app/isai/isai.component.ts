@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { index, results } from './types/properties';
 
 @Component({
   selector: 'app-isai',
@@ -8,28 +9,79 @@ import { Component } from '@angular/core';
   styleUrl: './isai.component.scss',
 })
 export class IsaiComponent {
-  regular = 0;
+  results: results = [
+    {
+      regular: 0,
+      offer: 0,
+      result: 0,
+    },
+    {
+      regular: 0,
+      offer: 0,
+      quantityOffer: 0,
+      result: 0,
+    },
+    {
+      offer: 0,
+      quantityOffer: 0,
+      regular: 0,
+      quantityRegular: 0,
+      result: 0,
+    },
+  ];
 
-  result = 0;
-  offer = 0;
+  updateResult(i: 0 | 1 | 2) {
+    let newResult;
 
-  updateResult() {
-    const newResult = this.regular - this.offer;
-    this.result = Number(newResult.toFixed(2));
+    switch (i) {
+      case 0:
+        newResult = this.results[i].regular! - this.results[i].offer!;
+        break;
+      case 1:
+        newResult =
+          this.results[i].regular * this.results[i].offer -
+          this.results[i].quantityOffer;
+        break;
+      case 2:
+        const a = this.results[i].quantityRegular / this.results[i].regular;
+        const b = this.results[i].offer * a;
+
+        newResult = b - this.results[i].quantityOffer;
+
+        break;
+    }
+
+    this.results[i].result = Number(newResult.toFixed(2));
   }
 
-  handleRegular(e: Event) {
+  handleRegular(e: Event, i: index) {
     const target = e.target as HTMLInputElement;
-    this.regular = Number(target.value);
-    this.updateResult();
-  }
-  handleOffer(e: Event) {
-    const target = e.target as HTMLInputElement;
-    this.offer = Number(target.value);
-    this.updateResult();
+
+    this.results[i].regular = Number(target.value);
+    this.updateResult(i);
   }
 
-  copyOne = () => {
-    navigator.clipboard.writeText(this.result.toString());
+  handleOffer(e: Event, i: index) {
+    const target = e.target as HTMLInputElement;
+    this.results[i].offer = Number(target.value);
+    this.updateResult(i);
+  }
+
+  handleOfferQuantity(e: Event, i: 1 | 2) {
+    const target = e.target as HTMLInputElement;
+
+    this.results[i].quantityOffer = Number(target.value);
+    this.updateResult(i);
+  }
+
+  handleRegularQuantity(e: Event, i: 2) {
+    const target = e.target as HTMLInputElement;
+
+    this.results[i].quantityRegular = Number(target.value);
+    this.updateResult(i);
+  }
+
+  copy = (i: index) => {
+    navigator.clipboard.writeText(this.results[i].result.toString());
   };
 }
